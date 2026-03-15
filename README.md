@@ -1,32 +1,17 @@
 # Server Written in Assembly (x86_64 Linux)
 
 A tiny **HTTP-like server written at the lowest level** — pure **x86_64 Linux assembly**.
+![](https://private-user-images.githubusercontent.com/74038190/242390692-0b335028-1d3d-4ee5-b5b3-a373d499be7e.gif?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NzM1MzM4ODYsIm5iZiI6MTc3MzUzMzU4NiwicGF0aCI6Ii83NDAzODE5MC8yNDIzOTA2OTItMGIzMzUwMjgtMWQzZC00ZWU1LWI1YjMtYTM3M2Q0OTliZTdlLmdpZj9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNjAzMTUlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjYwMzE1VDAwMTMwNlomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTVhZmEwNTJkMWU2NTc2NTI2MmI2MGMxZTk1ZjA1MmE2M2YzMzg2NTFkMjcwMzdkZTI4MDIyYjRiZTY1ZjQwZGYmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0In0.vv3L_JG-yP-69iMx7Z-CJmcvW3yny9YZWaoWv6ehgro)
 
 Most of us can build a server in **C / Rust / JavaScript** in minutes.
 I wrote this one in Assembly because I wanted to *really* understand what happens **under the hood**: syscalls, sockets, file descriptors, request parsing, and the raw mechanics behind “web servers”.
 
 > Next stop: diving even deeper into the **Linux kernel networking stack**.
 
----
-
-## Preview (GIFs)
-
-> Replace these links with your own GIF recordings (asciinema / terminal recording / screen capture).
-
-- Server boot + request flow  
-  ![Server demo GIF](https://media.giphy.com/media/3o7aD2saalBwwftBIY/giphy.gif)
-
-- Quick GET example  
-  ![GET demo GIF](https://media.giphy.com/media/l0HlBO7eyXzSZkJri/giphy.gif)
-
-- POST example (creates/writes a file)  
-  ![POST demo GIF](https://media.giphy.com/media/26ufdipQqU2lhNA4g/giphy.gif)
-
----
-
 ## What it does
 
 ### ✅ GET
+ ![](https://media.giphy.com/media/l0HlBO7eyXzSZkJri/giphy.gif)
 - Reads the requested path from the request line
 - Opens that file
 - Sends back:
@@ -37,6 +22,8 @@ I wrote this one in Assembly because I wanted to *really* understand what happen
 > Caution: this is intentionally low-level and minimal — it can serve *any* file path the request asks for.
 
 ### ✅ POST
+![](https://media.giphy.com/media/26ufdipQqU2lhNA4g/giphy.gif)
+
 - Parses the requested path
 - Creates/opens a file (write-only + create)
 - Extracts content length from the request headers (simple parsing)
